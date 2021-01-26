@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  width:100%;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+#t01 tr:nth-child(even) {
+  background-color: #eee;
+}
+#t01 tr:nth-child(odd) {
+ background-color: #fff;
+}
+#t01 th {
+  background-color: black;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<form method="POST">
+    {% csrf_token %}
+    name: {{ forms.name }}<br><br>
+    old price: {{ forms.old_price }}<br><br>
+    new price: {{ forms.new_price }}<br><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Data</h2>
+<h5>it takes 5 second to load data</h5>
+
+<table id="t01">
+  <tr>
+    <th>name</th>
+    <th>old price</th>
+    <th>new price</th>
+    <th>discount percentage</th>
+  </tr>
+
+{% for product in products %}
+    <tr>
+    <td>{{ product.name }}</td>
+    <td>{{ product.old_price }}</td>
+    <td>{{ product.new_price }}</td>
+    <td>{{ product.discount_percentage }}</td>
+  </tr>
+
+{% endfor %}
+
+
+</table>
+
+</body>
+</html>
+
+
